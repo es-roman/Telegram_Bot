@@ -1,0 +1,10 @@
+[project]
+name = "telegram-bot"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "aiogram>=3.31.0",
+    "aiohttp>=3.14.5",
+    "pydantic-settings>=2.15.0",
+    "structlog>=26.1.0",
+]

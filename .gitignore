@@ -1,0 +1,14 @@
+# Секреты и локальные настройки
+settings.toml
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# IDE
+.idea/
+
+# Логи
+*.log
