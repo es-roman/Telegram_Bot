@@ -10,6 +10,7 @@ from bot.logging_config import get_structlog_config
 
 logger: FilteringBoundLogger = structlog.get_logger()
 
+
 async def main() -> None:
     # Чтение конфигурации (toml-файл или env vars – не важно)
     settings = Settings()

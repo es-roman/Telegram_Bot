@@ -13,6 +13,7 @@ class ProjectNameProcessor:
     """
     Добавляет имя проекта в лог, может пригодиться при агрегировании логов куда-нибудь
     """
+
     def __init__(self, project_name: str):
         self.project_name = project_name
 
@@ -59,6 +60,7 @@ def get_processors(log_config: LogConfig) -> list:
     Формирует список процессоров для трансформации логов
     В зависимости от настроек выбираются те или иные процессоры.
     """
+
     def custom_json_serializer(data, *args, **kwargs):
         result = dict()
         for key in ("level", "event"):
