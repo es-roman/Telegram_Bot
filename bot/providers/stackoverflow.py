@@ -1,6 +1,8 @@
-import aiohttp
-from bot.models.search_result import SearchResult
 import asyncio
+
+import aiohttp
+
+from bot.models.search_result import SearchResult
 
 MAX_CONCURRENT_REQUESTS = 5
 semaphore = asyncio.Semaphore(MAX_CONCURRENT_REQUESTS)
@@ -18,15 +20,17 @@ async def search_stackoverflow(query: str) -> list[SearchResult]:
         "order": "desc",
     }
 
-    async with semaphore:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(
-                url,
-                params=params,
-                timeout=aiohttp.ClientTimeout(total=10),
-            ) as response:
-                response.raise_for_status()
-                data = await response.json()
+    async with (
+        semaphore,
+        aiohttp.ClientSession() as session,
+        session.get(
+            url,
+            params=params,
+            timeout=aiohttp.ClientTimeout(total=10),
+        ) as response,
+    ):
+        response.raise_for_status()
+        data = await response.json()
 
     questions = data.get("items", [])
 
@@ -45,7 +49,7 @@ async def search_stackoverflow(query: str) -> list[SearchResult]:
             source="StackOverflow",
             score=score,
             answers=answers,
-            status=status
+            status=status,
         )
 
         results.append(result)

@@ -1,12 +1,7 @@
 from aiogram import Router
 
-from . import (
-    start, search
-)
+from . import search, start
 
 
 def get_routers() -> list[Router]:
-    return [
-        start.router,
-        search.router
-    ]
+    return [start.router, search.router]

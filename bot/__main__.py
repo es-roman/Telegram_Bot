@@ -1,9 +1,9 @@
 import asyncio
 
 import structlog
+from aiogram import Bot, Dispatcher
 from structlog.typing import FilteringBoundLogger
 
-from aiogram import Bot, Dispatcher
 from bot.config import Settings
 from bot.handlers import get_routers
 from bot.logging_config import get_structlog_config

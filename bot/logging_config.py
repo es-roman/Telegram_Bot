@@ -4,7 +4,7 @@ from sys import stdout
 
 import structlog
 from structlog import WriteLoggerFactory
-from structlog.typing import WrappedLogger, EventDict
+from structlog.typing import EventDict, WrappedLogger
 
 from bot.config import LogConfig, LogRenderer
 
@@ -37,15 +37,15 @@ def get_structlog_config(log_config: LogConfig) -> dict:
         # Create handler for stdlib logging
         standard_handler = logging.StreamHandler(stream=stdout)
         standard_handler.setFormatter(
-            structlog.stdlib.ProcessorFormatter(
-                processors=get_processors(log_config)
-            )
+            structlog.stdlib.ProcessorFormatter(processors=get_processors(log_config))
         )
 
         # Configure root logger to use this handler
         standard_logger = logging.getLogger()
         standard_logger.addHandler(standard_handler)
-        standard_logger.setLevel(logging.DEBUG if log_config.show_debug_logs else logging.INFO)
+        standard_logger.setLevel(
+            logging.DEBUG if log_config.show_debug_logs else logging.INFO
+        )
 
     return {
         "processors": get_processors(log_config),

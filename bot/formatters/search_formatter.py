@@ -9,11 +9,7 @@ def format_wikipedia_result(article: SearchResult) -> str:
     if article.description:
         item += f"\n{escape(article.description)}"
 
-    return (
-        f"{item} \n"
-        f'<a href="{escape(article.url, quote=True)}">'
-        f"🔗 Читать статью</a>"
-    )
+    return f'{item} \n<a href="{escape(article.url, quote=True)}">🔗 Читать статью</a>'
 
 
 def format_github_result(article: SearchResult) -> str:
@@ -28,10 +24,7 @@ def format_github_result(article: SearchResult) -> str:
     if article.language is not None:
         item += f" • 💻 {escape(article.language)}"
 
-    item += (
-        f' • <a href="{escape(article.url, quote=True)}">'
-        f"🔗 Открыть репозиторий</a>"
-    )
+    item += f' • <a href="{escape(article.url, quote=True)}">🔗 Открыть репозиторий</a>'
 
     return item
 
@@ -48,10 +41,7 @@ def format_stackoverflow_result(article: SearchResult) -> str:
     if article.status is not None:
         item += f" • ✅ {escape(article.status)}"
 
-    item += (
-        f'\n<a href="{escape(article.url, quote=True)}">'
-        f"🔗 Открыть вопрос</a>"
-    )
+    item += f'\n<a href="{escape(article.url, quote=True)}">🔗 Открыть вопрос</a>'
 
     return item
 

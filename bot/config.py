@@ -1,7 +1,7 @@
 import tomllib
 from enum import StrEnum
 from pathlib import Path
-from typing import Any, Tuple, Type
+from typing import Any
 
 from pydantic import BaseModel, SecretStr
 from pydantic_settings import (
@@ -38,9 +38,7 @@ class TomlConfigSettingsSource(PydanticBaseSettingsSource):
     находится в корневой директории проекта, рядом с пакетом bot.
     """
 
-    def get_field_value(
-        self, field: Any, field_name: str
-    ) -> Tuple[Any, str, bool]:
+    def get_field_value(self, field: Any, field_name: str) -> tuple[Any, str, bool]:
         return None, field_name, False
 
     def __call__(self) -> dict[str, Any]:
@@ -71,7 +69,7 @@ class Settings(BaseSettings):
     @classmethod
     def settings_customise_sources(
         cls,
-        settings_cls: Type[BaseSettings],
+        settings_cls: type[BaseSettings],
         init_settings: PydanticBaseSettingsSource,
         env_settings: PydanticBaseSettingsSource,
         dotenv_settings: PydanticBaseSettingsSource,
