@@ -44,6 +44,7 @@ Telegram_Bot/
 │   ├── logging_config.py
 │   └── __main__.py
 ├── pyproject.toml
+├── settings.example.toml
 ├── uv.lock
 ├── .gitignore
 └── README.md
