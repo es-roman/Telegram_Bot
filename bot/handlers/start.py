@@ -7,4 +7,4 @@ router = Router(name="start")
 
 @router.message(CommandStart())
 async def cmd_start(message: Message) -> None:
-    await message.answer("Привет! Напиши тему, и я найду статьи в Википедии.")
+    await message.answer("Привет! Напиши тему, и я найду подходящие статьи.")
